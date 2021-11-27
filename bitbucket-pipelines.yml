@@ -1,0 +1,19 @@
+image: maven:3.6.3
+
+pipelines:
+  default:
+    - parallel:
+      - step:
+          name: Build
+          caches:
+            - maven
+          script:
+            - mvn validate
+            - mvn compile --file pom.xml
+      - step:
+          name: Test
+          caches:
+            - maven
+          script:
+            - mvn validate
+            - mvn test --file pom.xml
